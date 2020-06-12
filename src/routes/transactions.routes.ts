@@ -18,11 +18,16 @@ transactionsRouter.get('/', async (request, response) => {
 });
 
 transactionsRouter.post('/', async (request, response) => {
-  const { title, type, value } = request.body;
+  const { title, type, value, category } = request.body;
 
   const createTransaction = new CreateTransactionService();
 
-  const transaction = await createTransaction.execute({ title, type, value });
+  const transaction = await createTransaction.execute({
+    title,
+    type,
+    value,
+    category,
+  });
 
   return response.json(transaction);
 });
